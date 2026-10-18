@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Pip the Dream Developer ✦ Baby's First Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Keep the new Pip image instead of the old eyes and wave emoji -->
+  <style>
+    .eye,
+    .wave-emoji {
+      display: none !important;
+    }
+
+    /* Keep the game cards clickable */
+    .game-list,
+    .game-card {
+      position: relative;
+      z-index: 40;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background skies -->
+  <div class="sky sky-night" aria-hidden="true"></div>
+  <div class="sky sky-day" aria-hidden="true"></div>
+
+  <div class="celestial" aria-hidden="true">
+    <span class="orb"></span>
+  </div>
+
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <canvas id="shower" aria-hidden="true"></canvas>
+
+
+  <!-- ================= PAGE 1: INTRODUCTION ================= -->
+
+  <main class="page page-intro active" id="page1">
+
+    <header class="topbar">
+      <div class="brand">
+        ☁️ <span>Pip's Nursery</span>
+      </div>
+
+      <div class="top-actions">
+        <button
+          class="icon-btn"
+          id="musicBtn"
+          aria-pressed="true"
+          aria-label="Mute music"
+          title="Music on / off"
+        >
+          <span class="ico-on">🎵</span>
+          <span class="ico-off">🔇</span>
+        </button>
+      </div>
+    </header>
+
+
+    <section class="hero">
+
+      <!-- Pip character stage -->
+      <div class="stage">
+
+        <div class="bubble" id="bubble" aria-live="polite">
+          <span id="bubbleText">Hi! I'm Pip! 👋</span>
+        </div>
+
+        <div class="pip-wrap" id="pipWrap">
+
+          <div class="halo" aria-hidden="true"></div>
+
+          <div class="pip3d" id="pip3d">
+
+            <div class="pip-body" id="pipBody">
+
+              <img
+                class="pip-img pip-night"
+                src="./assests/pip.png"
+                alt="Pip, your cloud companion"
+              />
+
+              <img
+                class="pip-img pip-day"
+                src="./assests/pip.png"
+                alt="Pip, your cloud companion"
+              />
+
+              <span class="eye eye-l" aria-hidden="true"></span>
+              <span class="eye eye-r" aria-hidden="true"></span>
+
+              <span class="wave-emoji" aria-hidden="true">👋</span>
+
+            </div>
+
+            <div class="particles" id="particles" aria-hidden="true"></div>
+
+          </div>
+
+          <div class="ground-shadow" aria-hidden="true"></div>
+
+        </div>
+
+
+        <!-- Character controls -->
+        <div class="stage-actions">
+
+          <button
+            class="btn btn-theme"
+            id="themeBtn"
+            aria-label="Switch between night and day"
+          >
+            <span class="theme-ico">☀️</span>
+            <span class="theme-label">Wake up the day</span>
+          </button>
+
+          <button
+            class="btn btn-ghost"
+            id="replayBtn"
+            aria-label="Hear Pip's story again"
+          >
+            🗣️ Hear Pip again
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Introduction text -->
+      <div class="copy">
+
+        <p class="eyebrow">Hello, I'm</p>
+
+        <h1 class="name">Pip</h1>
+
+        <p class="role">
+          the cloud companion · junior dream engineer
+        </p>
+
+
+        <div class="cards">
+
+          <article class="card">
+            <h2><span>🌙</span> What I am</h2>
+
+            <p>
+              A sleepy, gentle little cloud companion with a big smile
+              and a very fancy nightcap.
+            </p>
+          </article>
+
+
+          <article class="card">
+            <h2><span>💻</span> What I do</h2>
+
+            <p>
+              I code dreams, lullabies, nightlights &amp; tiny websites
+              at the Midnight Nursery.
+            </p>
+          </article>
+
+
+          <article class="card card-story">
+            <h2><span>📖</span> My story</h2>
+
+            <div class="story" id="story" aria-live="polite"></div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer class="bottom">
+      <button class="btn btn-next" id="nextBtn">
+        Next <span aria-hidden="true">➜</span>
+      </button>
+    </footer>
+
+  </main>
+
+
+
+  <!-- ================= PAGE 2: MENU + GAMES ================= -->
+
+  <main class="page page-menu" id="page2" aria-hidden="true">
+
+    <header class="topbar">
+
+      <div class="brand">
+        ☁️ <span>Pip's Nursery</span>
+      </div>
+
+      <div class="top-actions">
+
+        <button
+          class="icon-btn"
+          id="menuBtn"
+          aria-expanded="false"
+          aria-controls="menuPanel"
+          aria-label="Open menu"
+        >
+          <span class="burger">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- Navigation menu -->
+    <nav class="menu-panel" id="menuPanel" aria-label="Main menu">
+
+      <button class="menu-link" data-go="home">
+        🏠 Home <small>back to Pip</small>
+      </button>
+
+      <button class="menu-link" data-soon="About Pip">
+        🌙 About Pip
+      </button>
+
+      <button class="menu-link" data-soon="Projects">
+        🛠️ Projects
+      </button>
+
+      <button class="menu-link" data-soon="Story">
+        📖 Story
+      </button>
+
+      <button class="menu-link" data-soon="Guestbook">
+        💌 Guestbook
+      </button>
+
+
+      <div class="menu-theme">
+
+        <span>Theme</span>
+
+        <div class="seg" role="group" aria-label="Theme">
+
+          <button
+            class="seg-btn"
+            data-theme-set="night"
+            aria-pressed="true"
+          >
+            🌙 Night
+          </button>
+
+          <button
+            class="seg-btn"
+            data-theme-set="day"
+            aria-pressed="false"
+          >
+            ☀️ Day
+          </button>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+
+
+    <!-- Games section -->
+    <section class="menu-hero">
+
+      <img
+        class="mini-pip mini-night"
+        src="./assests/pip.png"
+        alt=""
+      />
+
+      <img
+        class="mini-pip mini-day"
+        src="./assests/pip.png"
+        alt=""
+      />
+
+
+      <h2>Choose a game 🎮</h2>
+
+      <p>Pick one and play with Pip!</p>
+
+
+      <div class="game-list">
+
+        <!-- GAME 1: LANTERN GAME -->
+        <a
+          class="game-card"
+          href="./games/lantern_game/index.html"
+        >
+          <span class="game-ico">🏮</span>
+
+          <strong>Lantern Game</strong>
+
+          <small>Light up the night with Pip</small>
+        </a>
+
+
+        <!-- GAME 2: STAR COLLECTION GAME -->
+        <a
+          class="game-card"
+          href="./games/star_collection_game/index.html"
+        >
+          <span class="game-ico">⭐</span>
+
+          <strong>Star Collection Game</strong>
+
+          <small>Catch as many stars as you can</small>
+        </a>
+
+
+         <!-- PROJECT 3: NIGHTLIGHT COLLECTION -->
+        <a
+          class="game-card"
+          href="./games/nightlight_collection/index.html"
+        >
+          <span class="game-ico">💡</span>
+
+          <strong>Nightlight Collection</strong>
+
+          <small>Tap glowing lamps and lanterns Pip designed</small>
+        </a>
+
+
+
+          <!-- PROJECT 4: DREAM DELIVERY ROUTES -->
+        <a
+          class="game-card"
+          href="./games/dream_routes/index.html"
+        >
+          <span class="game-ico">🗺️</span>
+
+          <strong>Dream Delivery Routes</strong>
+
+          <small>Plan Pip's rooftop route across town</small>
+        </a>
+
+      
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- Notification toast -->
+  <div class="toast" id="toast" role="status"></div>
+
+
+
+  <!-- Main website JavaScript -->
+  <script src="./script.js"></script>
+
+
+
+  <!-- Pip blinking animation -->
+  <script>
+    const PIP_OPEN = "./assests/pip.png";
+    const PIP_BLINK = "./assests/pip_blink_final.png";
+
+    // Preload the blinking image
+    const blinkPreload = new Image();
+    blinkPreload.src = PIP_BLINK;
+
+    // Select all Pip images
+    const allPipImages = document.querySelectorAll(
+      ".pip-img, .mini-pip"
+    );
+
+    function blinkPip() {
+      allPipImages.forEach((img) => {
+        img.src = PIP_BLINK;
+      });
+
+      setTimeout(() => {
+        allPipImages.forEach((img) => {
+          img.src = PIP_OPEN;
+        });
+      }, 180);
+    }
+
+    function scheduleBlink() {
+      setTimeout(() => {
+        blinkPip();
+        scheduleBlink();
+      }, 2500 + Math.random() * 2500);
+    }
+
+    scheduleBlink();
+  </script>
+
+</body>
+</html>
