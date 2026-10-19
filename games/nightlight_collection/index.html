@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Nightlight Collection · Pip's Dream Nursery</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="../../immersion.css" />
+    <script src="../../immersion.js" defer></script>
+</head>
+<body class="day-mode">
+
+    <header class="nl-header">
+        <a href="../../index.html" class="nl-back">← Back to Pip's Nursery</a>
+        <button type="button" id="nl-theme" class="secondary-button">🌙 Night Mode</button>
+    </header>
+
+    <main>
+        <section id="nightlights" class="nightlights-section">
+
+            <p class="eyebrow">PROJECT 02 · THE GLOW GALLERY</p>
+
+            <h2>The Nightlight Collection</h2>
+
+            <p class="section-description">
+                A gallery of glowing lamps and bedside lanterns Pip designed.
+                Tap a lamp to light it up!
+            </p>
+
+            <div class="lamp-controls">
+                <button type="button" class="secondary-button" id="lamps-all-on">Light them all ✨</button>
+                <button type="button" class="secondary-button" id="lamps-all-off">Tuck them in 💤</button>
+                <button type="button" class="secondary-button" id="lamps-dark-toggle" aria-pressed="false">Dim the room 🌑</button>
+            </div>
+
+            <p class="lamp-count" id="lamp-count" aria-live="polite">0 of 5 lamps glowing</p>
+
+            <div class="lamp-gallery">
+
+                <!-- 1. Moon Lantern -->
+                <article class="lamp-card" style="--lamp:#ffd166">
+                    <button type="button" class="lamp-button" aria-pressed="false" aria-label="Toggle the Moon Lantern">
+                        <span class="lamp-stage">
+                            <svg class="lamp-svg" viewBox="0 0 120 150" aria-hidden="true">
+                                <line x1="60" y1="0" x2="60" y2="30" stroke="currentColor" stroke-width="3"/>
+                                <circle class="lamp-halo" cx="60" cy="78" r="50"/>
+                                <rect x="51" y="26" width="18" height="12" rx="4" fill="currentColor"/>
+                                <circle class="lamp-body" cx="60" cy="78" r="34" stroke="currentColor" stroke-width="4"/>
+                                <path d="M70 58 A20 20 0 1 0 70 98 A15 15 0 1 1 70 58 Z" fill="currentColor" opacity=".28"/>
+                                <circle class="lamp-spark" cx="82" cy="62" r="3"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <h3>🌙 Moon Lantern</h3>
+                    <p>A paper moon that hangs over the crib and hums softly.</p>
+                    <span class="lamp-status">off</span>
+                </article>
+
+                <!-- 2. Star Jar -->
+                <article class="lamp-card" style="--lamp:#ffe9a8">
+                    <button type="button" class="lamp-button" aria-pressed="false" aria-label="Toggle the Star Jar">
+                        <span class="lamp-stage">
+                            <svg class="lamp-svg" viewBox="0 0 120 150" aria-hidden="true">
+                                <circle class="lamp-halo" cx="60" cy="90" r="54"/>
+                                <rect class="lamp-body" x="32" y="48" width="56" height="84" rx="16" stroke="currentColor" stroke-width="4"/>
+                                <rect x="38" y="30" width="44" height="18" rx="6" fill="#a34063" stroke="currentColor" stroke-width="4"/>
+                                <text class="lamp-spark" x="60" y="84" text-anchor="middle" font-size="24">★</text>
+                                <text class="lamp-spark" x="46" y="112" text-anchor="middle" font-size="16">★</text>
+                                <text class="lamp-spark" x="74" y="116" text-anchor="middle" font-size="18">★</text>
+                            </svg>
+                        </span>
+                    </button>
+                    <h3>⭐ Star Jar</h3>
+                    <p>Twelve tiny stars, caught on a quiet night and kept warm.</p>
+                    <span class="lamp-status">off</span>
+                </article>
+
+                <!-- 3. Cloud Lamp -->
+                <article class="lamp-card" style="--lamp:#ffb3d1">
+                    <button type="button" class="lamp-button" aria-pressed="false" aria-label="Toggle the Cloud Lamp">
+                        <span class="lamp-stage">
+                            <svg class="lamp-svg" viewBox="0 0 120 150" aria-hidden="true">
+                                <circle class="lamp-halo" cx="62" cy="82" r="54"/>
+                                <g fill="currentColor" stroke="currentColor" stroke-width="8" stroke-linejoin="round">
+                                    <circle cx="40" cy="88" r="22"/>
+                                    <circle cx="66" cy="74" r="26"/>
+                                    <circle cx="88" cy="90" r="20"/>
+                                    <rect x="40" y="88" width="48" height="22" rx="10"/>
+                                </g>
+                                <g class="lamp-body">
+                                    <circle cx="40" cy="88" r="22"/>
+                                    <circle cx="66" cy="74" r="26"/>
+                                    <circle cx="88" cy="90" r="20"/>
+                                    <rect x="40" y="88" width="48" height="22" rx="10"/>
+                                </g>
+                                <circle cx="56" cy="92" r="2.5" fill="currentColor"/>
+                                <circle cx="74" cy="92" r="2.5" fill="currentColor"/>
+                                <path d="M60 98 q5 5 10 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                                <rect x="46" y="120" width="36" height="10" rx="4" fill="currentColor"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <h3>☁️ Cloud Lamp</h3>
+                    <p>A pillowy glow for sleepy heads who like to float away.</p>
+                    <span class="lamp-status">off</span>
+                </article>
+
+                <!-- 4. Mushroom Lamp -->
+                <article class="lamp-card" style="--lamp:#ff9e7a">
+                    <button type="button" class="lamp-button" aria-pressed="false" aria-label="Toggle the Mushroom Lamp">
+                        <span class="lamp-stage">
+                            <svg class="lamp-svg" viewBox="0 0 120 150" aria-hidden="true">
+                                <circle class="lamp-halo" cx="60" cy="82" r="54"/>
+                                <rect x="46" y="80" width="28" height="48" rx="10" fill="#fff3e3" stroke="currentColor" stroke-width="4"/>
+                                <path class="lamp-body" d="M16 84 A44 40 0 0 1 104 84 Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                                <circle cx="40" cy="64" r="6" fill="#fff" opacity=".85"/>
+                                <circle cx="66" cy="52" r="7" fill="#fff" opacity=".85"/>
+                                <circle cx="86" cy="70" r="5" fill="#fff" opacity=".85"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <h3>🍄 Mushroom Lamp</h3>
+                    <p>Grows in the corner of the nursery and glows when it is happy.</p>
+                    <span class="lamp-status">off</span>
+                </article>
+
+                <!-- 5. Bedside Lantern -->
+                <article class="lamp-card" style="--lamp:#ffb347">
+                    <button type="button" class="lamp-button" aria-pressed="false" aria-label="Toggle the Bedside Lantern">
+                        <span class="lamp-stage">
+                            <svg class="lamp-svg" viewBox="0 0 120 150" aria-hidden="true">
+                                <circle class="lamp-halo" cx="60" cy="78" r="52"/>
+                                <path d="M42 34 A18 18 0 0 1 78 34" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                                <rect x="38" y="34" width="44" height="12" rx="4" fill="currentColor"/>
+                                <rect class="lamp-body" x="43" y="46" width="34" height="62" rx="8" stroke="currentColor" stroke-width="4"/>
+                                <path class="lamp-flame" d="M60 62 Q72 80 60 98 Q48 80 60 62 Z"/>
+                                <rect x="36" y="108" width="48" height="14" rx="5" fill="currentColor"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <h3>🏮 Bedside Lantern</h3>
+                    <p>Pip's classic. One tiny flame, one very big hug of light.</p>
+                    <span class="lamp-status">off</span>
+                </article>
+
+            </div>
+
+            <p class="lamp-secret" id="lamp-secret" hidden>
+                🌟 All five are glowing. Goodnight, little dreamers.
+            </p>
+
+        </section>
+    </main>
+
+</body>
+</html>

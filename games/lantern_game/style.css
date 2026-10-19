@@ -1,0 +1,50 @@
+:root {
+  --ink: #fdf3dc;
+  --amber: #ffb347;
+  --rose: #ff7a7a;
+  --teal: #1f6f78;
+  --panel: rgba(6, 12, 30, .78);
+}
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  background: #050a1c;
+  color: var(--ink);
+  font-family: "Palatino Linotype", Georgia, serif;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+#wrap { position: relative; height: 100%; }
+canvas { display: block; width: 100%; height: 100%; cursor: none; }
+
+#hud {
+  position: absolute; top: 12px; left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  padding: 0 18px; font-size: 19px;
+  pointer-events: none; text-shadow: 0 2px 8px #000a;
+}
+#hud b { color: var(--amber); }
+
+#panel {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; background: var(--panel); padding: 24px;
+}
+#panel.hide { display: none; }
+
+h1 {
+  font-size: clamp(34px, 8vw, 58px); margin: 0 0 10px;
+  color: var(--amber); font-weight: 700; text-shadow: 0 0 24px #ff9a2e88;
+}
+p { max-width: 430px; line-height: 1.55; margin: 6px 0; font-size: 18px; }
+
+button {
+  margin-top: 20px; font: inherit; font-size: 20px; font-weight: 700;
+  color: #2a1500; background: linear-gradient(#ffcf7a, var(--amber));
+  border: 0; border-radius: 28px; padding: 12px 38px;
+  cursor: pointer; box-shadow: 0 0 22px #ffb34766;
+}
+button:focus-visible { outline: 3px solid #7fe3ea; outline-offset: 3px; }

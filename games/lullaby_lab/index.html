@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Lullaby Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="top">
+    <a id="back" href="../../index.html">← Back to Pip</a>
+    <h1>The Lullaby Lab</h1>
+    <p id="song">Pip's lullaby</p>
+  </header>
+
+  <main id="stage">
+    <!-- Music box: the picture has no key; the golden key is its own piece so it can turn -->
+    <div id="box">
+      <img id="boxImg" src="pip_lullaby_box_nokey.png" alt="A pink and cream music box with a little unicorn on top">
+      <button id="key" aria-label="Wind the music box key"><img src="pip_lullaby_key.png" alt=""></button>
+    </div>
+
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <div id="panel">
+      <h2>The Lullaby Lab</h2>
+      <p>Pip has been writing tiny lullabies for the sleepy hours. Wind up the music box and Pip will hum along.</p>
+      <p>Tap the golden key any time to wind it, pause it, or start it again.</p>
+      <button id="go" class="main">Wind it up</button>
+    </div>
+  </main>
+
+  <div id="bar">
+    <button id="play" class="main">Play</button>
+    <button id="new">New lullaby</button>
+
+    <div class="moods" role="group" aria-label="Mood">
+      <button data-m="sleepy" aria-pressed="true">Sleepy</button>
+      <button data-m="dreamy" aria-pressed="false">Dreamy</button>
+      <button data-m="moonlit" aria-pressed="false">Moonlit</button>
+    </div>
+
+    <label class="tempo">Tempo
+      <input id="bpm" type="range" min="40" max="110" value="64">
+      <output id="bpmv">64</output>
+    </label>
+
+    <label class="chk"><input type="checkbox" id="hum" checked> Pip hums along</label>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
