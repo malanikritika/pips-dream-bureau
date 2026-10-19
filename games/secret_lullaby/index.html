@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pip's Secret Lullaby</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a id="back" href="../../index.html">← Back to Pip</a>
+  <button id="mute" aria-label="Mute lullaby">♪</button>
+
+  <div id="sky"></div><div id="dawn"></div><div id="moon"></div>
+  <div id="hills">
+    <svg id="castle" viewBox="0 0 200 120"><g fill="#1a1244"><rect x="30" y="50" width="30" height="70"/><rect x="85" y="30" width="34" height="90"/><rect x="145" y="55" width="28" height="65"/><rect x="55" y="75" width="35" height="45"/><rect x="115" y="80" width="35" height="40"/>
+      <polygon points="26,50 45,12 64,50"/><polygon points="80,30 102,-8 124,30"/><polygon points="141,55 159,20 177,55"/></g>
+      <g fill="#ffd86b"><rect x="42" y="64" width="6" height="10" rx="3"/><rect x="99" y="48" width="6" height="12" rx="3"/><rect x="99" y="72" width="6" height="12" rx="3"/><rect x="156" y="70" width="6" height="10" rx="3"/></g></svg>
+  </div>
+  <div id="fireflies"></div>
+
+  <button id="secretStar" aria-label="A secret star that blinks differently"></button>
+  <p id="hint">psst… one little star blinks differently from the rest</p>
+
+  <main id="stage"><section id="doors"></section></main>
+
+  <div id="eggBox" role="button" tabindex="0" aria-label="Tap the egg">
+    <div class="half top"><img src="egg.svg" alt=""></div>
+    <div class="half bot"><img src="egg.svg" alt=""></div>
+    <svg class="cracks" viewBox="0 0 200 260" fill="none" stroke="#5a3a7a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path id="k1" d="M100 120L88 140L104 156L92 176"/>
+      <path id="k2" d="M100 120L118 134L112 152L132 160L124 182"/>
+      <path id="k3" d="M14 151L40 138L62 156L84 140L100 156L120 140L142 156L164 138L186 151"/>
+    </svg>
+  </div>
+
+  <div id="pip"><div class="pace"><img src="pip_avatar_cloud.png" alt="Pip waddling happily"></div></div>
+
+  <p id="caption"></p>
+  <button id="replay" hidden>Let Pip sleep again</button>
+  <div id="flash"></div>
+  <canvas id="fx"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
