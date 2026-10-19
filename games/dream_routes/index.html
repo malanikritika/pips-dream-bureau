@@ -1,140 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="night">
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="../../immersion.css" />
-<script src="../../immersion.js" defer></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dream Delivery Routes · Pip's Nursery</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="./style.css" />
-
-  <!-- Page-level colors that the Dream Routes CSS expects from the main site -->
-  <style>
-    :root {
-      --font-head: "Fredoka", system-ui, sans-serif;
-      --font-body: "Nunito", system-ui, sans-serif;
-    }
-    html[data-theme="night"] {
-      --text: #efe9ff; --muted: #b9afe6;
-      --card: rgba(38, 28, 92, .55); --card-border: rgba(185, 164, 255, .28);
-      --accent: #ffc85c; --accent-2: #b9a4ff; --glow: rgba(255, 200, 92, .35);
-      --bubble-bg: #2e2266; --bubble-text: #fff3d6;
-    }
-    html[data-theme="day"] {
-      --text: #3a2213; --muted: #7a5a40;
-      --card: rgba(255, 255, 255, .6); --card-border: rgba(122, 46, 10, .25);
-      --accent: #c2410c; --accent-2: #c2501c; --glow: rgba(194, 80, 28, .3);
-      --bubble-bg: #fff3d6; --bubble-text: #3a2213;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh;
-      font-family: var(--font-body); color: var(--text);
-      background: linear-gradient(180deg, #140d3b, #2a1f6e);
-      transition: background .6s;
-    }
-    html[data-theme="day"] body { background: linear-gradient(180deg, #ffe3b0, #ffc27a); }
-
-    .dr-page-header {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px; padding: 14px clamp(14px, 4vw, 32px);
-    }
-    .dr-back { color: var(--text); font-weight: 700; text-decoration: none; }
-    .dr-back:hover { text-decoration: underline wavy; text-underline-offset: 6px; }
-    .dr-theme-btn {
-      font: 600 1rem var(--font-head); cursor: pointer; color: var(--text);
-      background: var(--card); border: 2px solid var(--card-border);
-      border-radius: 999px; padding: .5rem 1.1rem;
-    }
-    .dr-page-main { padding: 8px clamp(10px, 3vw, 24px) 40px; }
-  </style>
-
-  <script src="./script.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pip's Dream Lanterns</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <header class="dr-page-header">
-    <a class="dr-back" href="../../index.html">← Back to Pip's Nursery</a>
-    <button class="dr-theme-btn" id="drThemeBtn" type="button">☀️ Day</button>
-  </header>
-
-  <main class="dr-page-main">
-
-    <!-- ===================== DREAM DELIVERY ROUTES ===================== -->
-    <section class="dream-routes" id="dreamRoutes" aria-labelledby="drTitle">
-
-      <header class="dr-head">
-        <div class="dr-pip" aria-hidden="true">
-          <img class="dr-pip-img dr-pip-night" src="../../assests/pip.png" alt="" />
-          <img class="dr-pip-img dr-pip-day" src="../../assests/pip.png" alt="" />
-        </div>
-        <div class="dr-head-text">
-          <p class="dr-eyebrow">Pip's Nursery · Experiment #3</p>
-          <h2 id="drTitle">🌙 Dream Delivery Routes</h2>
-          <p class="dr-sub">Tap the rooftops to plan Pip's route, then watch him float across town delivering one dream to every sleepy house.</p>
-        </div>
-      </header>
-
-      <div class="dr-wrap" id="drWrap">
-        <svg id="drMap" class="dr-map" viewBox="0 0 900 520" role="group"
-             aria-label="Rooftop map of the sleepy town. Choose rooftops to plan Pip's delivery route."></svg>
-        <div class="dr-bubble" id="drBubble" role="status"></div>
-      </div>
-      <p class="dr-info" id="drInfo" aria-live="polite">Tap a rooftop to add it to Pip's route.</p>
-
-      <div class="dr-panel">
-        <div class="dr-route-box">
-          <h3>🗺️ Pip's route</h3>
-          <ol class="dr-list" id="drList"></ol>
-          <p class="dr-empty" id="drEmpty">No stops yet. Tap a rooftop on the map.</p>
-        </div>
-        <div class="dr-stats" aria-live="polite">
-          <div><b id="drStatStops">0</b><span>stops</span></div>
-          <div><b id="drStatDone">0</b><span>delivered</span></div>
-          <div><b id="drStatMiles">0</b><span>cloud-miles</span></div>
-        </div>
-      </div>
-
-      <div class="dr-controls">
-        <button class="dr-btn dr-go" id="drDeliver" type="button" aria-pressed="false">
-          <span class="dr-go-ico" aria-hidden="true">🚀</span><span class="dr-go-label">Deliver dreams</span>
-        </button>
-        <button class="dr-btn dr-ghost" id="drSmart" type="button">✨ Smart route</button>
-        <button class="dr-btn dr-ghost" id="drClear" type="button">🧹 Clear</button>
-
-        <label class="dr-field">Flight speed
-          <select id="drSpeed">
-            <option value="cozy">Cozy</option>
-            <option value="normal" selected>Normal</option>
-            <option value="zoom">Zoom</option>
-          </select>
-        </label>
-        <label class="dr-check"><input type="checkbox" id="drChime" checked /> 🔔 Chimes</label>
-      </div>
-
-    </section>
-    <!-- ===================== /DREAM DELIVERY ROUTES ===================== -->
-
-  </main>
-
-  <script>
-    // Day / night toggle (your Dream Routes script watches data-theme)
-    (function () {
-      var html = document.documentElement;
-      var btn = document.getElementById("drThemeBtn");
-      btn.addEventListener("click", function () {
-        var toDay = html.getAttribute("data-theme") === "night";
-        html.setAttribute("data-theme", toDay ? "day" : "night");
-        btn.textContent = toDay ? "🌙 Night" : "☀️ Day";
-      });
-    })();
-  </script>
-
+<canvas id="fx"></canvas>
+<div id="sky"></div>
+<div id="town"><i class="h h1"></i><i class="h h2"></i><i class="h h3"></i><i class="h h4"></i><i class="h h5"></i><i class="h home"></i></div>
+<img id="pip" src="assets/pip.png" alt="Pip">
+<img id="fairy" src="assets/fairy_pip.png" alt="Fairy Pip">
+<div id="shelf"></div>
+<div id="stars"></div>
+<button id="go" aria-label="Start the story">&#9733;</button>
+<button id="mute" aria-label="Music on or off">&#9835;</button>
+<script src="script.js"></script>
 </body>
 </html>
