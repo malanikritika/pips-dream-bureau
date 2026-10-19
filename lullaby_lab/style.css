@@ -1,0 +1,121 @@
+:root {
+  --ink: #5b3b2c;
+  --gold: #d9a43a;
+  --gold-deep: #a86f1a;
+  --pink: #f6c1cf;
+  --pink-deep: #e58ea6;
+  --cream: #f3e8d7;
+  --card: #fff8ea;
+  --line: #e3c9a4;
+}
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  display: flex; flex-direction: column;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 50% 40%, #f8f0e3, var(--cream) 70%);
+  font-family: "Palatino Linotype", Georgia, serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ---- header ---- */
+#top { position: relative; text-align: center; padding: 14px 16px 0; }
+#back {
+  position: absolute; top: 14px; left: 16px;
+  color: var(--ink); font-size: 16px; text-decoration: none; opacity: .75;
+}
+#back:hover { opacity: 1; }
+#back:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #8a6cf0; outline-offset: 3px; }
+
+h1 {
+  margin: 0; font-size: clamp(26px, 5vw, 40px); font-weight: 700;
+  color: var(--gold-deep); text-shadow: 0 2px 0 #fff8;
+}
+#song { margin: 2px 0 0; font-size: 18px; font-style: italic; }
+
+/* ---- stage ---- */
+#stage {
+  position: relative; flex: 1; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(0px, 2vw, 28px); padding: 4px 12px;
+}
+
+/* The pictures have a cream backdrop, so their edges fade into the page */
+#boxImg {
+  display: block; width: 100%; height: 100%;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-composite: intersect;
+}
+
+#box {
+  position: relative; flex: none;
+  width: min(54vw, 620px, calc((100dvh - 230px) * 1.108));
+  aspect-ratio: 1024 / 924;
+}
+
+/* the key sits exactly where the original key was and turns around its own shaft */
+#key {
+  position: absolute; left: 68.164%; top: 52.49%; width: 6.152%; height: 13.42%;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  transform-origin: 0 46.8%; will-change: transform, filter;
+}
+#key img { display: block; width: 100%; height: 100%; pointer-events: none; }
+
+#fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+
+#panel {
+  position: absolute; inset: 0; z-index: 4;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 24px; background: rgba(248, 240, 227, .88);
+}
+#panel.hide { display: none; }
+#panel h2 { margin: 0 0 10px; font-size: clamp(34px, 8vw, 56px); color: var(--gold-deep); text-shadow: 0 2px 0 #fff8; }
+#panel p { max-width: 440px; line-height: 1.6; margin: 6px 0; font-size: 18px; }
+#panel button.main { margin-top: 20px; font-size: 20px; padding: 12px 38px; border-radius: 28px; }
+
+/* ---- controls ---- */
+#bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 10px 14px; padding: 12px 16px; font-size: 16px;
+  background: var(--card); border-top: 1px solid var(--line);
+}
+
+button {
+  font: inherit; font-size: 16px; color: var(--ink); cursor: pointer;
+  background: #fffdf6; border: 1px solid var(--line); border-radius: 22px; padding: 8px 18px;
+}
+button:hover { background: #fff1d6; }
+button.main {
+  font-weight: 700; border: 0; color: #4a2a10;
+  background: linear-gradient(#f7d27f, var(--gold));
+  box-shadow: 0 2px 10px #d9a43a55;
+}
+button.main:hover { background: linear-gradient(#fbdc95, #e3b04c); }
+
+.moods { display: flex; }
+.moods button { border-radius: 0; margin-left: -1px; padding: 8px 14px; }
+.moods button:first-child { border-radius: 22px 0 0 22px; margin-left: 0; }
+.moods button:last-child { border-radius: 0 22px 22px 0; }
+.moods button[aria-pressed="true"] { background: var(--pink); border-color: var(--pink-deep); font-weight: 700; }
+
+label { display: flex; align-items: center; gap: 8px; }
+input[type="range"] { width: 120px; accent-color: var(--gold); }
+input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--gold); }
+output { min-width: 2ch; font-weight: 700; color: var(--gold-deep); }
+
+/* ---- phones ---- */
+@media (max-width: 700px) {
+    #box { width: min(94vw, calc((100dvh - 220px) * 1.108)); }
+  #back { font-size: 14px; }
+  #bar { gap: 8px 10px; padding: 10px; font-size: 15px; }
+  button { padding: 7px 14px; font-size: 15px; }
+  input[type="range"] { width: 90px; }
+}
