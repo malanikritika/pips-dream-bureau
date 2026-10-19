@@ -1,0 +1,46 @@
+.fx-sparkle {
+  position: fixed;
+  margin: -.5em 0 0 -.5em;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 15px;
+  color: #ffc85c;
+  text-shadow: 0 0 8px rgba(255, 200, 92, .8);
+  animation: fx-fade .8s ease-out forwards;
+}
+@keyframes fx-fade {
+  to { opacity: 0; transform: translateY(22px) scale(.3) rotate(100deg); }
+}
+
+.fx-burst {
+  position: fixed;
+  margin: -.5em 0 0 -.5em;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 18px;
+}
+
+.fx-sound {
+  position: fixed;
+  left: calc(14px + env(safe-area-inset-left, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 9998;
+  width: 48px;
+  height: 48px;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #fff3d6;
+  background: rgba(38, 28, 92, .85);
+  border: 2px solid #ffc85c;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, .5);
+  transition: transform .15s ease;
+}
+.fx-sound:hover { transform: scale(1.08); }
+.fx-sound:active { transform: scale(.94); }
+.fx-sound:focus-visible { outline: 3px dashed #ffc85c; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-sparkle { display: none; }
+}
