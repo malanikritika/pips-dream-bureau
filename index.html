@@ -1,311 +1,326 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="night">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Pip's Dream Nursery ✦</title>
+  <title>Pip the Dream Developer ✦ Baby's First Portfolio</title>
 
-    <meta name="description"
-          content="Meet Pip, a tiny dream engineer who creates
-          lullabies, nightlights, and magical bedtime stories.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <!-- Your friends will connect these files -->
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    .eye,
+    .wave-emoji { display: none !important; }
+
+    /* Keep the game cards clickable */
+    .game-list,
+    .game-card,
+    .arcade,
+    .game-row {
+      position: relative;
+      z-index: 40;
+      pointer-events: auto;
+    }
+  </style>
+  <link rel="stylesheet" href="./immersion.css" />
+  <script src="./immersion.js" defer></script>
 </head>
 
-<body class="day-mode">
+<body>
 
-    <!-- Navigation -->
-    <header class="site-header">
-        <a href="#home" class="logo">
-            <span>✦</span> Pip's Dream Nursery
-        </a>
+  <!-- Background skies -->
+  <div class="sky sky-night" aria-hidden="true"></div>
+  <div class="sky sky-day" aria-hidden="true"></div>
 
-        <nav class="navigation">
-            <a href="#about">Meet Pip</a>
-            <a href="#projects">Dream Projects</a>
-            <a href="#story">My Story</a>
-            <a href="#contact">Say Hello</a>
-        </nav>
+  <div class="celestial" aria-hidden="true">
+    <span class="orb"></span>
+  </div>
 
-        <button id="theme-toggle"
-                class="theme-toggle"
-                type="button"
-                aria-label="Switch between day and night mode">
-            🌙 Night Mode
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <canvas id="shower" aria-hidden="true"></canvas>
+
+
+  <!-- ================= PAGE 1: INTRODUCTION ================= -->
+  <main class="page page-intro active" id="page1">
+
+    <header class="topbar">
+      <div class="brand">☁️ <span>Pip's Nursery</span></div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="musicBtn" aria-pressed="true" aria-label="Mute music" title="Music on / off">
+          <span class="ico-on">🎵</span>
+          <span class="ico-off">🔇</span>
         </button>
+      </div>
     </header>
 
+    <!-- Quick navigation -->
+    <nav class="navbar" aria-label="Quick navigation">
+      <button class="nav-link active" data-nav="meet">🏠 Meet Pip</button>
+      <button class="nav-link" data-nav="story">📖 My story</button>
+      <button class="nav-link" data-nav="dream">💼 Dream job</button>
+      <button class="nav-link" data-nav="secrets">🤫 Secrets</button>
+    </nav>
 
-    <main>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
+    <section class="hero">
 
-            <div class="hero-content">
-                <p class="eyebrow">✧ A LITTLE WORLD OF BIG DREAMS ✧</p>
+      <!-- Pip character stage -->
+      <div class="stage">
 
-                <h1>
-                    Hello, sleepyhead!
-                    <br>
-                    I'm <span class="accent-text">Pip.</span>
-                </h1>
+        <div class="bubble" id="bubble" aria-live="polite">
+          <span id="bubbleText">Psst… tap anywhere and I'll spill my dreams! 👋</span>
+        </div>
 
-                <p class="hero-description">
-                    A tiny skull baby with a big imagination,
-                    designing sweeter dreams for everyone at
-                    the Midnight Nursery.
-                </p>
+        <div class="pip-wrap" id="pipWrap">
+          <div class="halo" aria-hidden="true"></div>
 
-                <p class="character-role">
-                    ☁️ Junior Dream Engineer
-                    <span> · </span>
-                    🌙 Professional Dreamer
-                </p>
+          <div class="pip3d" id="pip3d">
+            <div class="pip-body" id="pipBody">
+              <img class="pip-img pip-night" src="./assests/pip.png" alt="Pip, your cloud companion" />
+              <img class="pip-img pip-day" src="./assests/pip.png" alt="Pip, your cloud companion" />
 
-                <a href="#projects" class="primary-button">
-                    Explore My Dream World ✨
-                </a>
-
-                <a href="#about" class="secondary-button">
-                    Get to know me
-                </a>
+              <span class="eye eye-l" aria-hidden="true"></span>
+              <span class="eye eye-r" aria-hidden="true"></span>
+              <span class="wave-emoji" aria-hidden="true">👋</span>
             </div>
 
-            <div class="hero-character">
-                <!-- Replace this placeholder with Pip's official image -->
-                <img
-                    src="assets/pip_avatar_cloud.png"
-                    alt="Pip, the sleepy skull baby, resting on a fluffy cloud"
-                    class="pip-image"
-                >
-
-                <p class="floating-caption">
-                    currently dreaming... zZz
-                </p>
-            </div>
-
-        </section>
-
+            <div class="particles" id="particles" aria-hidden="true"></div>
+          </div>
 
-        <!-- About Pip -->
-        <section id="about" class="about-section">
-
-            <p class="eyebrow">A LITTLE INTRODUCTION</p>
+          <div class="ground-shadow" aria-hidden="true"></div>
+        </div>
 
-            <h2>Small skull. Big dreams.</h2>
-
-            <p>
-                Don't let my tiny size fool you! I'm Pip, a gentle,
-                sleepy little dream engineer. I spend my nights
-                making magical things that help little creatures
-                feel safe, cozy, and ready to dream.
-            </p>
-
-            <div class="character-details">
-
-                <article class="detail-card">
-                    <span>🍼</span>
-                    <h3>What am I?</h3>
-                    <p>A cute, gentle skull baby with glowing amber
-                       eyes, a starry nightcap, and a pink bow.</p>
-                </article>
-
-                <article class="detail-card">
-                    <span>💭</span>
-                    <h3>My personality</h3>
-                    <p>Soft-hearted, curious, imaginative, and
-                       always just a little bit sleepy.</p>
-                </article>
 
-                <article class="detail-card">
-                    <span>🌙</span>
-                    <h3>My little quirks</h3>
-                    <p>I collect moonbeams, hum to my toys, and
-                       sometimes fall asleep while inventing.</p>
-                </article>
+        <!-- Character controls -->
+        <div class="stage-actions">
+          <button class="btn btn-theme" id="themeBtn" aria-label="Switch between night and day">
+            <span class="theme-ico">☀️</span>
+            <span class="theme-label">Wake up the day</span>
+          </button>
 
-            </div>
-        </section>
+          <button class="btn btn-ghost" id="replayBtn" aria-label="Hear Pip's story again">
+            🗣️ Hear Pip again
+          </button>
+        </div>
 
+      </div>
 
-        <!-- Projects -->
-        <section id="projects" class="projects-section">
 
-            <p class="eyebrow">MADE WITH A LITTLE BIT OF MAGIC</p>
+      <!-- Introduction text -->
+      <div class="copy">
 
-            <h2>Welcome to my dream lab!</h2>
+        <p class="eyebrow">Psst… you found me! I'm</p>
 
-            <p class="section-description">
-                Every little creation has one big mission:
-                making bedtime more magical.
-            </p>
+        <h1 class="name">Pip</h1>
 
-            <div class="project-grid">
+        <p class="role">cloud by night · code wizard by dawn</p>
 
-                <article class="project-card">
-                    <img
-                        src="assets/pip_lullaby_box.png"
-                        alt="Pip's magical lullaby music box"
-                        class="project-image"
-                    >
-
-                    <p class="project-number">PROJECT 01</p>
-                    <h3>🎵 The Lullaby Lab</h3>
+        <div class="cards">
 
-                    <p>
-                        Tiny music boxes, gentle melodies, and
-                        sleepy sounds made for dreamers everywhere.
-                    </p>
+          <article class="card">
+            <h2><span>🌙</span> What I am</h2>
+            <p>Part cloud, part cuddle, full-time dreamer in a very fancy nightcap.</p>
+          </article>
 
-                    <button type="button" class="project-button"
-                            data-project="lullaby">
-                        Discover the lullabies ♫
-                    </button>
-                </article>
+          <article class="card">
+            <h2><span>💻</span> What I do</h2>
+            <p>I code lullabies, nightlights &amp; tiny websites while the whole world snores.</p>
+          </article>
 
+          <article class="card card-story" id="storyCard">
+            <h2><span>📖</span> My story in 3 stops</h2>
+            <div class="story" id="story" aria-live="polite"></div>
+          </article>
 
-                <article class="project-card">
-                    <img
-                        src="assets/pip_dream_lantern.png"
-                        alt="A glowing lantern from Pip's nightlight collection"
-                        class="project-image"
-                    >
+        </div>
 
-                    <p class="project-number">PROJECT 02</p>
-                    <h3>🏮 The Nightlight Collection</h3>
+      </div>
 
-                    <p>
-                        Dreamy little lamps that turn dark corners
-                        into warm, comforting places.
-                    </p>
+    </section>
 
-                    <button type="button" class="project-button"
-                            data-project="nightlights">
-                        Explore the glow ✨
-                    </button>
-                </article>
 
-
-                <article class="project-card">
-                    <div class="project-placeholder" aria-hidden="true">
-                        ☁️ 🌙 ⭐
-                    </div>
-
-                    <p class="project-number">PROJECT 03</p>
-                    <h3>🗺️ Dream Delivery Routes</h3>
-
-                    <p>
-                        Follow Pip across the rooftops as tiny
-                        bundles of happy dreams travel through
-                        the sleeping neighborhood.
-                    </p>
-
-                    <button type="button" class="project-button"
-                            data-project="dream-routes">
-                        Follow the dream trail →
-                    </button>
-                </article>
-
-            </div>
-        </section>
-
-
-        <!-- Origin Story -->
-        <section id="story" class="story-section">
-
-            <p class="eyebrow">ONCE UPON A MOONLIT NIGHT</p>
-
-            <h2>How my little dream journey began</h2>
-
-            <div class="story-scene">
-                <span class="story-icon">🌌</span>
-
-                <h3>Chapter 01: The First Dream</h3>
-
-                <p>
-                    On a quiet night, beneath a sky full of stars,
-                    Pip discovered a tiny glowing moonbeam tucked
-                    inside a cloud. It hummed the softest melody
-                    Pip had ever heard. That little melody sparked
-                    a big idea: what if every creature could have
-                    a beautiful dream of its own?
-                </p>
-            </div>
-
-            <div class="story-scene">
-                <span class="story-icon">🎶</span>
-
-                <h3>Chapter 02: The Midnight Nursery</h3>
-
-                <p>
-                    With a music box, a handful of moon dust, and
-                    an enormous imagination, Pip began creating
-                    lullabies and glowing nightlights. Soon, the
-                    whole neighborhood was drifting into peaceful
-                    dreams. And so began Pip's adventures as a
-                    Junior Dream Engineer.
-                </p>
-            </div>
-
-            <button type="button" class="story-button">
-                Continue the bedtime story ✧
-            </button>
-
-        </section>
-
-
-        <!-- Fun Facts -->
-        <section id="fun-facts" class="fun-facts-section">
-
-            <p class="eyebrow">A FEW TINY SECRETS</p>
-
-            <h2>Things about me!</h2>
-
-            <ul class="fun-facts-list">
-                <li>🌟 My favourite colour is moon gold.</li>
-                <li>🧸 My favourite activity is inventing sleepy toys.</li>
-                <li>☁️ My dream workspace floats among the clouds.</li>
-                <li>💗 My pink bow is my most treasured accessory.</li>
-            </ul>
-
-        </section>
-
-
-        <!-- Contact -->
-        <section id="contact" class="contact-section">
-
-            <p class="eyebrow">THE NURSERY DOOR IS OPEN</p>
-
-            <h2>Have a dream to share?</h2>
-
-            <p>
-                Leave a little sparkle in Pip's world.
-                Every dreamer is welcome here!
-            </p>
-
-            <a href="mailto:hello@example.com" class="primary-button">
-                Send a little hello 💌
-            </a>
-
-        </section>
-
-    </main>
-
-
-    <!-- Footer -->
-    <footer class="site-footer">
-
-        <p>Made with ♡, moon dust, and a little imagination.</p>
-
-        <p>© 2026 Pip's Dream Nursery</p>
-
-        <a href="#home">Back to the stars ↑</a>
-
+    <footer class="bottom">
+      <button class="btn btn-next" id="nextBtn">
+        Next <span aria-hidden="true">➜</span>
+      </button>
     </footer>
+
+  </main>
+
+
+
+  <!-- ================= PAGE 2: MENU + GAMES ================= -->
+  <main class="page page-menu" id="page2" aria-hidden="true">
+
+    <header class="topbar">
+      <div class="brand">☁️ <span>Pip's Nursery</span></div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel" aria-label="Open menu">
+          <span class="burger"><i></i><i></i><i></i></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Quick navigation -->
+    <nav class="navbar" aria-label="Quick navigation">
+      <button class="nav-link" data-nav="meet">🏠 Meet Pip</button>
+      <button class="nav-link" data-nav="story">📖 My story</button>
+      <button class="nav-link active" data-nav="dream">💼 Dream job</button>
+      <button class="nav-link" data-nav="secrets">🤫 Secrets</button>
+    </nav>
+
+
+    <!-- Navigation menu -->
+    <nav class="menu-panel" id="menuPanel" aria-label="Main menu">
+
+      <button class="menu-link" data-go="home">🏠 Home <small>back to Pip</small></button>
+      <button class="menu-link" data-soon="About Pip">🌙 About Pip</button>
+      <button class="menu-link" data-soon="Projects">🛠️ Projects</button>
+      <button class="menu-link" data-soon="Story">📖 Story</button>
+      <button class="menu-link" data-soon="Guestbook">💌 Guestbook</button>
+
+      <div class="menu-theme">
+        <span>Theme</span>
+        <div class="seg" role="group" aria-label="Theme">
+          <button class="seg-btn" data-theme-set="night" aria-pressed="true">🌙 Night</button>
+          <button class="seg-btn" data-theme-set="day" aria-pressed="false">☀️ Day</button>
+        </div>
+      </div>
+
+    </nav>
+
+
+
+    <!-- Dream job section -->
+    <section class="menu-hero" id="dreamTop">
+
+      <img class="mini-pip-static" src="./assests/2nd_page_pip.png" alt="Pip at work" />
+
+      <h2>Pip's dream job 💼</h2>
+      <p>What I get up to while you're snoring ✨</p>
+
+
+      <!-- Two games in one box -->
+      <div class="arcade">
+        <h3 class="arcade-title">🕹️ Dreamland Arcade</h3>
+
+        <a class="game-row" href="./games/lantern_game/index.html">
+          <span class="game-ico">🏮</span>
+          <strong>Lantern Lights Out</strong>
+          <small>Light up the night with Pip</small>
+        </a>
+
+        <a class="game-row" href="./games/star_collection_game/index.html">
+          <span class="game-ico">⭐</span>
+          <strong>Starcatcher Rush</strong>
+          <small>Catch every falling star</small>
+        </a>
+      </div>
+
+
+      <div class="game-list">
+
+        <!-- PROJECT 3: NIGHTLIGHT COLLECTION -->
+        <a class="game-card" href="./games/nightlight_collection/index.html">
+          <span class="game-ico">💡</span>
+          <strong>Nightlight Collection</strong>
+          <small>Tap glowing lamps and lanterns Pip designed</small>
+        </a>
+
+        <!-- PROJECT 4: DREAM DELIVERY ROUTES -->
+        <a class="game-card" href="./games/dream_routes/index.html">
+          <span class="game-ico">🗺️</span>
+          <strong>Dream Delivery Routes</strong>
+          <small>Plan Pip's rooftop route across town</small>
+        </a>
+
+        <!--lullaby lab-->
+
+        <a class="game-card" href="games/lullaby_lab/index.html">
+    <span class="game-ico">🎶</span>
+    <strong>The Lullaby Lab</strong>
+    <small>Wind the music box and hear Pip hum</small>
+         </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- Little secrets -->
+    <section class="secrets" id="secrets">
+      <h3>🤫 Little secrets about me</h3>
+      <p class="secret-hint">swipe or scroll sideways ➜</p>
+
+      <div class="secret-track">
+        <article class="secret">
+          <span class="secret-ico">👁️</span>
+          <p>I sleep with one eye open. The blink? Totally a feature.</p>
+        </article>
+        <article class="secret">
+          <span class="secret-ico">🍪</span>
+          <p>I'm 90% cloud and 10% cookie crumbs.</p>
+        </article>
+        <article class="secret">
+          <span class="secret-ico">🐛</span>
+          <p>My favourite bug is the one that turned into a lullaby.</p>
+        </article>
+        <article class="secret">
+          <span class="secret-ico">🐑</span>
+          <p>I count stars instead of sheep… and always lose count at seven.</p>
+        </article>
+        <article class="secret">
+          <span class="secret-ico">🔦</span>
+          <p>I'm a tiny bit scared of the dark. That's why I carry a nightlight.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <!-- Notification toast -->
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Main website JavaScript -->
+  <script src="./script.js"></script>
+
+  <!-- Pip blinking animation -->
+  <script>
+    const PIP_OPEN = "./assests/pip.png";
+    const PIP_BLINK = "./assests/pip_blink_final.png";
+
+    const blinkPreload = new Image();
+    blinkPreload.src = PIP_BLINK;
+
+    const allPipImages = document.querySelectorAll(".pip-img");
+
+    function blinkPip() {
+      allPipImages.forEach((img) => { img.src = PIP_BLINK; });
+      setTimeout(() => {
+        allPipImages.forEach((img) => { img.src = PIP_OPEN; });
+      }, 180);
+    }
+
+    function scheduleBlink() {
+      setTimeout(() => {
+        blinkPip();
+        scheduleBlink();
+      }, 2500 + Math.random() * 2500);
+    }
+
+    scheduleBlink();
+  </script>
 
 </body>
 </html>
